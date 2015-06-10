@@ -1,0 +1,38 @@
+<div class="panel panel-default">
+   <div class="panel-heading">
+      <h3 class="panel-title">
+       <%= task.assignee %> - <%= task.name %>
+      </h3>
+   </div>
+  <div class="panel-body">
+   <form role="form">
+     <div class="form-group">
+       <label for="id">Id:</label>
+       <input type="text" class="form-control" id="id" placeholder="<%= task.id %>">
+     </div>
+     <div class="form-group">
+       <label for="pwd">TaskId:</label>
+       <input type="text" class="form-control" id="taskid" placeholder="<%= task.taskid %>">
+     </div>
+     <div class="form-group">
+       <label for="pwd">URL:</label>
+       <input type="text" class="form-control" id="url" placeholder="<%= task.url %>">
+     </div>
+     <div class="form-group">
+       <label for="pwd">Assignee:</label>
+       <input type="text" class="form-control" id="assignee" placeholder="<%= task.assignee %>">
+     </div>
+     <div class="form-group">
+       <label for="pwd">Name:</label>
+       <input type="text" class="form-control" id="name" placeholder="<%= task.name %>">
+     </div>
+     <div class="form-group">
+       <label for="pwd">Description:</label>
+       <input type="text" class="form-control" id="description" placeholder="<%= task.description %>">
+     </div>
+     <div class="form-group">
+       <label for="pwd">Processed:</label>
+       <input type="text" class="form-control" id="processed" placeholder="<%= task.processed %>">
+     </div>
+  </div>
+</div>

@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  formpropid: MyString
+  name: MyString
+  type: 
+  value: MyText
+  task_id: 
+
+two:
+  formpropid: MyString
+  name: MyString
+  type: 
+  value: MyText
+  task_id: 

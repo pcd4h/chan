@@ -1,0 +1,2 @@
+class FormPropertiesController < ApplicationController
+end

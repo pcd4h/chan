@@ -1,0 +1,17 @@
+module Api
+  class FormPropertiesController < ApplicationController
+    respond_to :json
+    before_action :authenticate_token!
+
+    def index
+      @form_properties = FormProperty.all
+      respond_with @form_properties
+    end
+
+    def create
+      @form_property = form_property.create(form_property_params)
+      respond_with @form_property
+    end
+    
+  end
+end

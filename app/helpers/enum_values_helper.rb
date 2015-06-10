@@ -1,0 +1,2 @@
+module EnumValuesHelper
+end

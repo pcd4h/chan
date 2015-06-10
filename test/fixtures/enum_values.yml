@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  enumvalid: MyString
+  name: MyString
+  form_property_id: 
+
+two:
+  enumvalid: MyString
+  name: MyString
+  form_property_id: 

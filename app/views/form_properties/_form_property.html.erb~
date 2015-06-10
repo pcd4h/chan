@@ -1,0 +1,6 @@
+<p><%= form_property.id %></p>
+<p><%= form_property.formpropid %></p>
+<p><%= form_property.name %></p>
+<p><%= form_property.formproptype %></p>
+<p><%= form_property.value %></p>
+
