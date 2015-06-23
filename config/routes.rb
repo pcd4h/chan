@@ -1,4 +1,6 @@
 Chan::Application.routes.draw do
+  resources :v_messages
+
   resources :users
   resources :enum_values
   resources :form_properties

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150609073216) do
+ActiveRecord::Schema.define(version: 20150622094136) do
 
   create_table "enum_values", force: true do |t|
     t.string   "enumvalid"
@@ -52,6 +52,21 @@ ActiveRecord::Schema.define(version: 20150609073216) do
     t.string   "email"
     t.string   "password_digest"
     t.string   "api_token"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "v_messages", force: true do |t|
+    t.string   "message_id"
+    t.string   "in_reply_to"
+    t.text     "content"
+    t.string   "session_event"
+    t.string   "to_addr"
+    t.string   "to_addr_type"
+    t.string   "from_addr"
+    t.string   "from_addr_type"
+    t.string   "transport_name"
+    t.string   "transport_type"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
