@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Message:</strong>
+  <%= @v_message.message_id %>
+</p>
+
+<p>
+  <strong>In reply to:</strong>
+  <%= @v_message.in_reply_to %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @v_message.content %>
+</p>
+
+<p>
+  <strong>Session event:</strong>
+  <%= @v_message.session_event %>
+</p>
+
+<p>
+  <strong>To addr:</strong>
+  <%= @v_message.to_addr %>
+</p>
+
+<p>
+  <strong>To addr type:</strong>
+  <%= @v_message.to_addr_type %>
+</p>
+
+<p>
+  <strong>From addr:</strong>
+  <%= @v_message.from_addr %>
+</p>
+
+<p>
+  <strong>From addr type:</strong>
+  <%= @v_message.from_addr_type %>
+</p>
+
+<p>
+  <strong>Transport name:</strong>
+  <%= @v_message.transport_name %>
+</p>
+
+<p>
+  <strong>Transport type:</strong>
+  <%= @v_message.transport_type %>
+</p>
+
+<%= link_to 'Edit', edit_v_message_path(@v_message) %> |
+<%= link_to 'Back', v_messages_path %>

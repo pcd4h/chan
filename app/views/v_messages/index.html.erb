@@ -1,0 +1,45 @@
+<h1>Listing v_messages</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Message</th>
+      <th>In reply to</th>
+      <th>Content</th>
+      <th>Session event</th>
+      <th>To addr</th>
+      <th>To addr type</th>
+      <th>From addr</th>
+      <th>From addr type</th>
+      <th>Transport name</th>
+      <th>Transport type</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @v_messages.each do |v_message| %>
+      <tr>
+        <td><%= v_message.message_id %></td>
+        <td><%= v_message.in_reply_to %></td>
+        <td><%= v_message.content %></td>
+        <td><%= v_message.session_event %></td>
+        <td><%= v_message.to_addr %></td>
+        <td><%= v_message.to_addr_type %></td>
+        <td><%= v_message.from_addr %></td>
+        <td><%= v_message.from_addr_type %></td>
+        <td><%= v_message.transport_name %></td>
+        <td><%= v_message.transport_type %></td>
+        <td><%= link_to 'Show', v_message %></td>
+        <td><%= link_to 'Edit', edit_v_message_path(v_message) %></td>
+        <td><%= link_to 'Destroy', v_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New V message', new_v_message_path %>

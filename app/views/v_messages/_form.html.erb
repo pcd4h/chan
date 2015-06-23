@@ -1,0 +1,57 @@
+<%= form_for(@v_message) do |f| %>
+  <% if @v_message.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@v_message.errors.count, "error") %> prohibited this v_message from being saved:</h2>
+
+      <ul>
+      <% @v_message.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :message_id %><br>
+    <%= f.text_field :message_id %>
+  </div>
+  <div class="field">
+    <%= f.label :in_reply_to %><br>
+    <%= f.text_field :in_reply_to %>
+  </div>
+  <div class="field">
+    <%= f.label :content %><br>
+    <%= f.text_area :content %>
+  </div>
+  <div class="field">
+    <%= f.label :session_event %><br>
+    <%= f.text_field :session_event %>
+  </div>
+  <div class="field">
+    <%= f.label :to_addr %><br>
+    <%= f.text_field :to_addr %>
+  </div>
+  <div class="field">
+    <%= f.label :to_addr_type %><br>
+    <%= f.text_field :to_addr_type %>
+  </div>
+  <div class="field">
+    <%= f.label :from_addr %><br>
+    <%= f.text_field :from_addr %>
+  </div>
+  <div class="field">
+    <%= f.label :from_addr_type %><br>
+    <%= f.text_field :from_addr_type %>
+  </div>
+  <div class="field">
+    <%= f.label :transport_name %><br>
+    <%= f.text_field :transport_name %>
+  </div>
+  <div class="field">
+    <%= f.label :transport_type %><br>
+    <%= f.text_field :transport_type %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

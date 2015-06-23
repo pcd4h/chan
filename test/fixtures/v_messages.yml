@@ -1,0 +1,25 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  message_id: MyString
+  in_reply_to: MyString
+  content: MyText
+  session_event: MyString
+  to_addr: MyString
+  to_addr_type: MyString
+  from_addr: MyString
+  from_addr_type: MyString
+  transport_name: MyString
+  transport_type: MyString
+
+two:
+  message_id: MyString
+  in_reply_to: MyString
+  content: MyText
+  session_event: MyString
+  to_addr: MyString
+  to_addr_type: MyString
+  from_addr: MyString
+  from_addr_type: MyString
+  transport_name: MyString
+  transport_type: MyString
