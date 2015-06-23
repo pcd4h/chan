@@ -1,11 +1,10 @@
 Chan::Application.routes.draw do
-  resources :v_messages
-
   resources :users
   resources :enum_values
   resources :form_properties
   resources :tasks
   resources :sessions
+  resources :v_messages
 
   root 'tasks#index'
 
@@ -14,6 +13,7 @@ Chan::Application.routes.draw do
 
   namespace :api do
     resources :tasks
+    resources :v_messages
   end
 
   # The priority is based upon order of creation: first created -> highest priority.
