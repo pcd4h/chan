@@ -47,4 +47,8 @@ gem 'byebug', group: [:development, :test]
 
 gem 'bootstrap-sass'
 
+# gems required by Heroku
+gem 'pg', group: :production
+gem 'rails_12factor', group: :production
+
 gem 'figaro'
