@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150622094136) do
+ActiveRecord::Schema.define(version: 20150624134908) do
 
   create_table "enum_values", force: true do |t|
     t.string   "enumvalid"
@@ -69,6 +69,7 @@ ActiveRecord::Schema.define(version: 20150622094136) do
     t.string   "transport_type"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "direction"
   end
 
 end

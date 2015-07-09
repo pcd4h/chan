@@ -3,7 +3,6 @@ class TasksController < ApplicationController
   before_action :authenticate_user!
 
   def index
-    debugger
     @tasks = Task.all.order("created_at DESC")
   end
 
