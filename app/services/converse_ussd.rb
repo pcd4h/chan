@@ -25,7 +25,7 @@ class ConverseUssd
     content = "response to " + params[:message_id]
     
     uri = VUM_API_URL_BEGIN + VUM_USSD_CONVERSATION_KEY + VUM_API_URL_END
-    callparams = {usi: uri,
+    callparams = {uri: uri,
       user: VUM_USER_ACCOUNT,
       token: VUM_USSD_API_TOKEN,
       in_reply_to: params[:message_id],
