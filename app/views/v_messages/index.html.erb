@@ -8,11 +8,12 @@
       <th>Content</th>
       <th>Session event</th>
       <th>To addr</th>
-      <th>To addr type</th>
+      <!-- <th>To addr type</th> -->
       <th>From addr</th>
-      <th>From addr type</th>
-      <th>Transport name</th>
+      <!-- <th>From addr type</th> -->
+      <!-- <th>Transport name</th> -->
       <th>Transport type</th>
+      <th>Direction</th>
       <th></th>
       <th></th>
       <th></th>
@@ -27,11 +28,12 @@
         <td><%= v_message.content %></td>
         <td><%= v_message.session_event %></td>
         <td><%= v_message.to_addr %></td>
-        <td><%= v_message.to_addr_type %></td>
+        <!-- <td><%= v_message.to_addr_type %></td> -->
         <td><%= v_message.from_addr %></td>
-        <td><%= v_message.from_addr_type %></td>
-        <td><%= v_message.transport_name %></td>
+        <!-- <td><%= v_message.from_addr_type %></td> -->
+        <!-- <td><%= v_message.transport_name %></td> -->
         <td><%= v_message.transport_type %></td>
+        <td><%= v_message.direction %></td>
         <td><%= link_to 'Show', v_message %></td>
         <td><%= link_to 'Edit', edit_v_message_path(v_message) %></td>
         <td><%= link_to 'Destroy', v_message, method: :delete, data: { confirm: 'Are you sure?' } %></td>

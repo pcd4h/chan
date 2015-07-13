@@ -15,7 +15,7 @@ module Api
       #controller example:
       #https://github.com/adamniedzielski/service-objects-example/blob/master/app/controllers/comments_controller.rb
       
-      NotifyUser.build.call(task_params)
+      SendSms.build.call(task_params)
       
       respond_with @task
     end

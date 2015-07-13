@@ -10,6 +10,9 @@ module Api
 
     def create
       @v_message = VMessage.create(v_message_params)
+      
+      ConverseUssd.build.call(v_message_params)
+
       respond_with @v_message
     end
 
