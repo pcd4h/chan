@@ -18,7 +18,12 @@ class ConverseUssd
     if currtask.nil?
       #msg: no open tasks
     else
-      
+      #if new session, start again for this task
+      if params[:session_event] == "new"
+        upd = FormProperty.where(task_id: currtask.id).update_all({:processed => false})
+      end
+
+
     end
 
     #experimental
