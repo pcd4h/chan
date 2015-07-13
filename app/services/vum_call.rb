@@ -7,6 +7,7 @@ class VumCall
     @uri = params[:uri]
     @user = params[:user]
     @token = params[:token]
+    @message_id = params[:message_id]
     @in_reply_to = params[:in_reply_to]
     @to_addr = params[:to_addr]
     @to_addr_type = params[:to_addr_type]
@@ -15,7 +16,8 @@ class VumCall
   end
 
   def callout
-    payload = {"in_reply_to" => @in_reply_to,
+    payload = {"message_id" => "try_msg_01",
+      "in_reply_to" => @in_reply_to,
       "to_addr" => @to_addr,
       "to_addr_type" => @to_addr_type,
       "content" => @content}.to_json
@@ -30,7 +32,9 @@ class VumCall
 
     #todo: error handling, add 'success' indicator to vmessage
 
-    VMessage.create(content: @content,
+    VMessage.create(message_id: @message_id,
+                    in_reply_to: @in_reply_to,
+                    content: @content,
                     to_addr: @to_addr,
                     to_addr_type: @to_addr_type,
                     transport_type: @transport_type,

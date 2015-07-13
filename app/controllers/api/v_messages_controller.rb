@@ -19,7 +19,7 @@ module Api
     private
 
     def v_message_params
-      params.require(:v_message).permit(:message_id, :in_reply_to, :content, :session_event, :to_addr, :to_addr_type, :from_addr, :from_addr_type, :transport_name, :transport_type, :direction => "in")
+      params.require(:v_message).permit(:message_id, :in_reply_to, :content, :session_event, :to_addr, :to_addr_type, :from_addr, :from_addr_type, :transport_name, :transport_type, :direction)
     end
 
   end
