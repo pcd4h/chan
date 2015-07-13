@@ -22,13 +22,13 @@ class ConverseUssd
     end
 
     #experimental
-    content = "response to " + [:message_id]
+    content = "response to " + params[:message_id]
     
     uri = VUM_API_URL_BEGIN + VUM_USSD_CONVERSATION_KEY + VUM_API_URL_END
     callparams = {usi: uri,
       user: VUM_USER_ACCOUNT,
       token: VUM_USSD_API_TOKEN,
-      in_reply_to: [:message_id],
+      in_reply_to: params[:message_id],
       to_addr: params[:from_addr],
       to_addr_type: "ussd",
       content: content,
