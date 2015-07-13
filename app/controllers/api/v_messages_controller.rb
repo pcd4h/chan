@@ -9,6 +9,7 @@ module Api
     end
 
     def create
+      v_message_params[:direction] = "in"
       @v_message = VMessage.create(v_message_params)
       
       ConverseUssd.build.call(v_message_params)
