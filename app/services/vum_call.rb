@@ -16,8 +16,7 @@ class VumCall
   end
 
   def callout
-    payload = {"message_id" => "try_msg_01",
-      "in_reply_to" => @in_reply_to,
+    payload = {"in_reply_to" => @in_reply_to,
       "to_addr" => @to_addr,
       "to_addr_type" => @to_addr_type,
       "content" => @content}.to_json
@@ -28,18 +27,20 @@ class VumCall
     request.basic_auth @user, @token
     request.body = payload
 
+    #todo: error handling, add 'success' indicator to vmessage
     response = http.request(request)
 
-    #todo: error handling, add 'success' indicator to vmessage
+    @message_id = JSON.parse(response.body)["message_id"]
 
-    VMessage.create(message_id: @message_id,
-                    in_reply_to: @in_reply_to,
-                    content: @content,
-                    to_addr: @to_addr,
-                    to_addr_type: @to_addr_type,
-                    transport_type: @transport_type,
-                    direction: "out")
-
+    vmsg = VMessage.create(message_id: @message_id,
+                             in_reply_to: @in_reply_to,
+                             content: @content,
+                             to_addr: @to_addr,
+                             to_addr_type: @to_addr_type,
+                             transport_type: @transport_type,
+                             direction: "out")
+    
+    return vmsg.id
   end
 
 end

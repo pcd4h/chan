@@ -34,7 +34,7 @@ class ConverseUssd
       content: content,
       transport_type: "ussd"}
 
-    VumCall.new(callparams).callout
+    vmsgid = VumCall.new(callparams).callout
 
     #in_reply_to empty
     #session_event 'new'?
