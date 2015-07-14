@@ -6,6 +6,7 @@ class ConverseUssd
 
   def call(params)
     #check ussd
+
     return true if params[:transport_type] != "ussd"
     
     from_addr = params[:from_addr]
@@ -39,7 +40,7 @@ class ConverseUssd
       .limit(1)
       .first
 
-    if formprop.null?
+    if formprop.nil?
       #notify act
       return
     end
