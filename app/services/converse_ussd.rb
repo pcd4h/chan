@@ -43,6 +43,7 @@ class ConverseUssd
     if formprop.nil?
       #notify act
       content = "Values submitted. Please press 'Cancel'. Thank you."
+      currtask.update({processed: true})
     else
       content = formprop.name
     end
