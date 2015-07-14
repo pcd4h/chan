@@ -18,16 +18,34 @@ class ConverseUssd
     if currtask.nil?
       #msg: no open tasks
     else
-      #if new session, start again for this task
+      #if new session, reset all formproperties
       if params[:session_event] == "new"
         upd = FormProperty.where(task_id: currtask.id).update_all({:processed => false})
+      elsif params[:session_event] == "resume"
+        #update formproperty
+        fp_upd = FormProperty.where(task_id: currtask.id, processed: false)
+          .order(id: :asc)
+          .limit(1)
+          .first
+
+        FormProperty.where(id: fp_upd.id).update_all({value: params[:content], processed: true})
+      else
+        return true
       end
+    end
 
+    formprop = FormProperty.where(task_id: currtask.id, processed: false)
+      .order(id: :asc)
+      .limit(1)
+      .first
 
+    if formprop.null?
+      #notify act
+      return
     end
 
     #experimental
-    content = "response to " + params[:message_id]
+    content = formprop.name
     
     uri = VUM_API_URL_BEGIN + VUM_USSD_CONVERSATION_KEY + VUM_API_URL_END
     callparams = {uri: uri,
