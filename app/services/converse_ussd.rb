@@ -42,11 +42,10 @@ class ConverseUssd
 
     if formprop.nil?
       #notify act
-      return
+      content = "Values submitted. Please press 'Cancel'. Thank you."
+    else
+      content = formprop.name
     end
-
-    #experimental
-    content = formprop.name
     
     uri = VUM_API_URL_BEGIN + VUM_USSD_CONVERSATION_KEY + VUM_API_URL_END
     callparams = {uri: uri,
