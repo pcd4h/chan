@@ -11,10 +11,6 @@ module Api
     def create
       @task = Task.create(task_params)
 
-      #notify user
-      #controller example:
-      #https://github.com/adamniedzielski/service-objects-example/blob/master/app/controllers/comments_controller.rb
-      
       SendSms.build.call(task_params)
       
       respond_with @task

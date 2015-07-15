@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150624134908) do
+ActiveRecord::Schema.define(version: 20150715080307) do
 
   create_table "enum_values", force: true do |t|
     t.string   "enumvalid"
@@ -45,6 +45,7 @@ ActiveRecord::Schema.define(version: 20150624134908) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "processed",   default: false
+    t.boolean  "in_progress", default: false
   end
 
   create_table "users", force: true do |t|
