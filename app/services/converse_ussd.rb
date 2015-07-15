@@ -34,7 +34,7 @@ class ConverseUssd
         return vmsgid
       end
 
-      upd_t = Task.where(id: currtask_id).update_all({:in_progress => true})
+      upd_t = Task.where(id: currtask.id).update_all({:in_progress => true})
       upd_f = FormProperty.where(task_id: currtask.id).update_all({:processed => false})
     elsif params[:session_event] == "resume"
       currtask = Task.where("assignee = ? AND processed = ? AND in_progress = ?", from_addr, false, true)
