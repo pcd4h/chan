@@ -70,7 +70,20 @@ class ConverseUssd
       callparams[:content] = "Values submitted. Please press 'Cancel'. Thank you."
       currtask.update({processed: true, in_progress: false})
     else
-      callparams[:content] = formprop.name
+      if formprop.formproptype == "string"
+        callparams[:content] = formprop.name
+      elsif formprop.formproptype == "enum"
+        
+        i = 0
+        content = formprop.name + " - Please select: "
+
+        formprop.enum_values.order(id: :asc).each do |enum_val|
+          i = i + 1
+          content = content + " " + i.to_s + ": " enum_val.name + "  "
+        end
+
+      else
+      end
     end
     
     vmsgid = VumCall.new(callparams).callout
