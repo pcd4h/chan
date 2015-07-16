@@ -54,8 +54,13 @@ class ConverseUssd
         .limit(1)
         .first
 
-      #upd_t = Task.where(id: currtask_id).update_all({:in_progress => true})
-      upd_f = FormProperty.where(id: fp_upd.id).update_all({value: params[:content], processed: true})
+      if fp_upd.formproptype == "string"
+        upd_f = FormProperty.where(id: fp_upd.id).update_all({value: params[:content], processed: true})
+      elsif fp_upd.formproptype == "enum"
+        #todo: check for valid number
+        val = fp_upd.enum_values[params[:content].to_i - 1].name
+        upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val, processed: true})
+      end
     else
       return true
     end
@@ -79,7 +84,7 @@ class ConverseUssd
 
         formprop.enum_values.order(id: :asc).each do |enum_val|
           i = i + 1
-          content = content + i.to_s + ": " + enum_val.name + "%0A"
+          content = content + i.to_s + ": " + enum_val.name + "\%0A"
         end
 
         callparams[:content] = content
