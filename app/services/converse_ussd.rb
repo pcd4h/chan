@@ -75,12 +75,14 @@ class ConverseUssd
       elsif formprop.formproptype == "enum"
         
         i = 0
-        content = formprop.name + " - Please select: "
+        content = formprop.name + " - Please select:%0A"
 
         formprop.enum_values.order(id: :asc).each do |enum_val|
           i = i + 1
-          content = content + " " + i.to_s + ": " + enum_val.name + "  "
+          content = content + i.to_s + ": " + enum_val.name + "%0A"
         end
+
+        callparams[:content] = content
 
       else
       end
