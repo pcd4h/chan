@@ -1,3 +1,8 @@
+ACT_REST_URL = ENV["act_rest_url"]
+ACT_REST_USER = ENV["act_rest_user"]
+ACT_REST_PASSWORD = ENV["act_rest_password"]
+ACT_PATH_PROC_INST = ENV["act_path_proc_inst"]
+ACT_PATH_TASK = ENV["act_path_task"]
 VUM_USER_ACCOUNT = ENV["vum_user_account"]
 VUM_SMS_CONVERSATION_KEY = ENV["vum_sms_conversation_key"]
 VUM_SMS_API_TOKEN = ENV["vum_sms_api_token"]

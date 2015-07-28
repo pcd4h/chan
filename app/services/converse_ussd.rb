@@ -5,8 +5,7 @@ class ConverseUssd
   end
 
   def call(params)
-    #check ussd
-
+    
     return true if params[:transport_type] != "ussd"
     
     from_addr = params[:from_addr]
@@ -54,16 +53,21 @@ class ConverseUssd
         .limit(1)
         .first
 
-      if fp_upd.formproptype == "string"
-        upd_f = FormProperty.where(id: fp_upd.id).update_all({value: params[:content], processed: true})
-      elsif fp_upd.formproptype == "enum"
-        #todo: check for valid number
-        val = fp_upd.enum_values.order(id: :asc)[Integer(params[:content]) - 1].name
-        upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val, processed: true})
+      #distinction writeable: non-writeable fields (values) as information to the user
+      if fp_upd.writeable?
+        if fp_upd.formproptype == "string" or fp_upd.formproptype == "long"
+          upd_f = FormProperty.where(id: fp_upd.id).update_all({value: params[:content]})
+        elsif fp_upd.formproptype == "enum"
+          #todo: check for valid number
+          val = fp_upd.enum_values.order(id: :asc)[Integer(params[:content]) - 1].name
+          upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val})
+        end
+      else
+        #? todo: cater for date
       end
-    else
-      return true
     end
+
+    upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
 
     formprop = FormProperty.where(task_id: currtask.id, processed: false)
       .order(id: :asc)
@@ -94,6 +98,17 @@ class ConverseUssd
     end
     
     vmsgid = VumCall.new(callparams).callout
+  end
+
+  def buildSubmitTaskFormData(taskid)
+    properties = []
+
+    FormProperty.where(task_id: taskid, processed: true, writeable: true).order(id: :asc).each do |fp|
+      properties.append({:id => fp.formpropid, :value => fp.value})
+    end
+
+    return {:taskId => taskid, :properties => properties}.to_json
+
   end
 
 end

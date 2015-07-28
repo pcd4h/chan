@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150715080307) do
+ActiveRecord::Schema.define(version: 20150727104732) do
 
   create_table "enum_values", force: true do |t|
     t.string   "enumvalid"
@@ -32,6 +32,7 @@ ActiveRecord::Schema.define(version: 20150715080307) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "processed",    default: false
+    t.boolean  "writeable",    default: true
   end
 
   add_index "form_properties", ["task_id"], name: "index_form_properties_on_task_id"
