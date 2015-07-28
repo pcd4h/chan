@@ -76,24 +76,30 @@ class ConverseUssd
 
     if formprop.nil?
       #notify act
+      a_callparams = {:payload => buildSubmitTaskFormData(currtask.id)}
+      ActCall.new(a_callparams).submitFormData
+
       callparams[:content] = "Values submitted. Please press 'Cancel'. Thank you."
       currtask.update({processed: true, in_progress: false})
     else
-      if formprop.formproptype == "string"
-        callparams[:content] = formprop.name
-      elsif formprop.formproptype == "enum"
-        
+      if formprop.formproptype == "enum"   
         i = 0
         content = formprop.name + " - Please select:\n"
-
+        
         formprop.enum_values.order(id: :asc).each do |enum_val|
           i = i + 1
           content = content + i.to_s + ": " + enum_val.name + "\n"
         end
-
+        
         callparams[:content] = content
-
-      else
+        
+      else #formproptype = string or long or date...
+        if formprop.writeable?
+          callparams[:content] = formprop.name
+        else
+          #display value as info to user
+          callparams[:content] = formprop.name + " - " + formprop.value.to_s
+        end
       end
     end
     
