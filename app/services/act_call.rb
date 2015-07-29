@@ -23,7 +23,7 @@ class ActCall
   end
 
   def post
-byebug
+
     uri = URI.parse(@uristr)
     http = Net::HTTP.new(uri.host, uri.port)
     request = Net::HTTP::Post.new(uri.request_uri, initheader = {'Content-Type' =>'application/json'})
