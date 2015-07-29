@@ -5,7 +5,7 @@ class SendSms
   end
 
   def call(params)
-    content = params[:description] + " - Please dial " + VUM_USSD_CHANNEL
+    content = params[:description].to_s + " - Please dial " + VUM_USSD_CHANNEL
     uri = VUM_API_URL_BEGIN + VUM_SMS_CONVERSATION_KEY + VUM_API_URL_END
     
     callparams = {uri: uri,
