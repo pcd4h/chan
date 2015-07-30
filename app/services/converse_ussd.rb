@@ -5,6 +5,7 @@ class ConverseUssd
   end
 
   def call(params)
+    #todo: cater for readable attribute
     
     return true if params[:transport_type] != "ussd"
     
@@ -67,6 +68,7 @@ class ConverseUssd
       end
     end
 
+#!
     upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
 
     formprop = FormProperty.where(task_id: currtask.id, processed: false)
