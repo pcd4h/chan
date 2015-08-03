@@ -11,6 +11,9 @@ module Api
     def create
       vmsg_params = v_message_params
       vmsg_params[:direction] = "in"
+
+      if vmsg_params[:content].nil? vmsg_params[:content] = ""
+
       @v_message = VMessage.create(vmsg_params)
       
       if vmsg_params[:transport_type] == "ussd"

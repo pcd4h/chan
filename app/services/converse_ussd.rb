@@ -78,7 +78,7 @@ class ConverseUssd
     if formprop.nil?
       #notify act
       a_callparams = {:payload => buildSubmitTaskFormData(currtask.id)}
-      ActCall.new(a_callparams).submitFormData
+      ActCall.new(a_callparams).submitformdata
 
       callparams[:content] = "Values submitted. Please press 'Cancel'. Thank you."
       currtask.update({processed: true, in_progress: false})
