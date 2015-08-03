@@ -12,17 +12,17 @@ module Api
       vmsg_params = v_message_params
       vmsg_params[:direction] = "in"
 
-      if vmsg_params[:content].nil?
-        vmsg_params[:content] = ""
-      end
+#      if vmsg_params[:content].nil?
+#        vmsg_params[:content] = ""
+#      end
 
       @v_message = VMessage.create(vmsg_params)
       
-      if vmsg_params[:transport_type] == "ussd"
-        ConverseUssd.build.call(vmsg_params)
-      elsif vmsg_params[:transport_type] == "sms"
-        ReceiveSms.build.call(vmsg_params)
-      end
+#      if vmsg_params[:transport_type] == "ussd"
+#        ConverseUssd.build.call(vmsg_params)
+#      elsif vmsg_params[:transport_type] == "sms"
+#        ReceiveSms.build.call(vmsg_params)
+#      end
 
       respond_with @v_message
     end
