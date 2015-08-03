@@ -12,7 +12,9 @@ module Api
       vmsg_params = v_message_params
       vmsg_params[:direction] = "in"
 
-      if vmsg_params[:content].nil? vmsg_params[:content] = ""
+      if vmsg_params[:content].nil?
+        vmsg_params[:content] = ""
+      end
 
       @v_message = VMessage.create(vmsg_params)
       
