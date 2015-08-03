@@ -47,7 +47,7 @@ class ConverseUssd
         vmsgid = VumCall.new(callparams).callout
         return vmsgid
       end
-
+      
       #update formproperty
       fp_upd = FormProperty.where(task_id: currtask.id, processed: false)
         .order(id: :asc)
@@ -62,14 +62,13 @@ class ConverseUssd
           #todo: check for valid number
           val = fp_upd.enum_values.order(id: :asc)[Integer(params[:content]) - 1].name
           upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val})
-        end
+        end #? todo: cater for date
       else
-        #? todo: cater for date
+        
       end
+     
+      upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
     end
-
-#!
-    upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
 
     formprop = FormProperty.where(task_id: currtask.id, processed: false)
       .order(id: :asc)
