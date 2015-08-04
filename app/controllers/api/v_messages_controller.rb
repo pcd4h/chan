@@ -18,11 +18,11 @@ module Api
 
       @v_message = VMessage.create(vmsg_params)
       
-#      if vmsg_params[:transport_type] == "ussd"
-#        ConverseUssd.build.call(vmsg_params)
-#      elsif vmsg_params[:transport_type] == "sms"
-#        ReceiveSms.build.call(vmsg_params)
-#      end
+      if vmsg_params[:transport_type] == "ussd"
+        ConverseUssd.build.call(vmsg_params)
+      elsif vmsg_params[:transport_type] == "sms"
+        ReceiveSms.build.call(vmsg_params)
+      end
 
       respond_with @v_message
     end
