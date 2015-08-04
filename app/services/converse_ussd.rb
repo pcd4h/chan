@@ -77,7 +77,7 @@ class ConverseUssd
 
     if formprop.nil?
       #notify act
-      a_callparams = {:payload => buildSubmitTaskFormData(currtask.id)}
+      a_callparams = {:payload => buildSubmitTaskFormData(currtask)}
       ActCall.new(a_callparams).submitformdata
 
       callparams[:content] = "Values submitted. Please press 'Cancel'. Thank you."
@@ -107,14 +107,14 @@ class ConverseUssd
     vmsgid = VumCall.new(callparams).callout
   end
 
-  def buildSubmitTaskFormData(taskid)
+  def buildSubmitTaskFormData(task)
     properties = []
 
-    FormProperty.where(task_id: taskid, processed: true, writeable: true).order(id: :asc).each do |fp|
+    FormProperty.where(task_id: task.id, processed: true, writeable: true).order(id: :asc).each do |fp|
       properties.append({:id => fp.formpropid, :value => fp.value})
     end
 
-    return {:taskId => taskid, :properties => properties}.to_json
+    return {:taskId => task.taskid, :properties => properties}.to_json
 
   end
 
