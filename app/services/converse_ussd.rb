@@ -60,7 +60,7 @@ class ConverseUssd
           upd_f = FormProperty.where(id: fp_upd.id).update_all({value: params[:content]})
         elsif fp_upd.formproptype == "enum"
           #todo: check for valid number
-          val = fp_upd.enum_values.order(id: :asc)[Integer(params[:content]) - 1].name
+          val = fp_upd.enum_values.order(id: :asc)[Integer(params[:content]) - 1].id
           upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val})
         end #? todo: cater for date
       else
