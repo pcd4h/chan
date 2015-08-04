@@ -32,9 +32,10 @@ class ActCall
     #todo: error handling
     response = http.request(request)
 
-    @result = JSON.parse(response.body)
+    #@result = JSON.parse(response.body)
+    @response = "Response #{response.code} #{response.message}: #{response.body}"
 
-    puts "Response #{response.code} #{response.message}: #{response.body}"
+    puts @response
   end
 
 end

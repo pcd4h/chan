@@ -64,7 +64,7 @@ class ConverseUssd
           upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val})
         end #? todo: cater for date
       else
-        
+        return true
       end
      
       upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
