@@ -63,10 +63,10 @@ class ConverseUssd
           val = fp_upd.enum_values.order(id: :asc)[Integer(params[:content]) - 1].enumvalid
           upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val})
         end #? todo: cater for date
-      else
-        return true
       end
       upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
+    else
+      return true
     end
 
     formprop = FormProperty.where(task_id: currtask.id, processed: false)
