@@ -66,9 +66,8 @@ class ConverseUssd
       else
         return true
       end
+      upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
     end
-
-    upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
 
     formprop = FormProperty.where(task_id: currtask.id, processed: false)
       .order(id: :asc)
