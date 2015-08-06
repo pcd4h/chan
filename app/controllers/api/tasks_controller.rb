@@ -11,7 +11,7 @@ module Api
     def create
       @task = Task.create(task_params)
 
-      SendSms.build.call(task_params)
+      #SendSms.build.call(task_params)
       
       respond_with @task
     end
