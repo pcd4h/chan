@@ -13,6 +13,8 @@ Chan::Application.routes.draw do
 
   namespace :api do
     resources :tasks
+    get 'task_by_taskid', to: 'tasks#show_by_taskid', as: 'task_by_taskid'
+    patch 'task_by_taskid', to: 'tasks#update_by_taskid', as: 'update_by_taskid'
     resources :v_messages
   end
 
