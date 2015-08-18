@@ -22,7 +22,7 @@ module Api
       respond_with @task
     end
 
-    def task_by_taskid
+    def show_by_taskid
       @task = Task.find_by_taskid(task_params[:taskid])
       respond_with @task
     end
