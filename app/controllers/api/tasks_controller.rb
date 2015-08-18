@@ -22,6 +22,11 @@ module Api
       respond_with @task
     end
 
+    def task_by_taskid
+      @task = Task.find_by_taskid(task_params[:taskid])
+      respond_with @task
+    end
+
     def show
     byebug
       @task = Task.find(params[:id])
