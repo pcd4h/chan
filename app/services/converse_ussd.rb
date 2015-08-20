@@ -55,21 +55,21 @@ class ConverseUssd
         .limit(1)
         .first
 
-      #distinction writeable: non-writeable fields (values) as information to the user
-      if fp_upd.writeable?
-        if fp_upd.formproptype == "string" or fp_upd.formproptype == "long"
-          upd_f = FormProperty.where(id: fp_upd.id).update_all({value: params[:content]})
-        elsif fp_upd.formproptype == "enum"
-          #todo: maybe a better way to check for valid number?
-          begin
+      begin
+        #distinction writeable: non-writeable fields (values) as information to the user
+        if fp_upd.writeable?
+          if fp_upd.formproptype == "string" or fp_upd.formproptype == "long"
+            upd_f = FormProperty.where(id: fp_upd.id).update_all({value: params[:content]})
+          elsif fp_upd.formproptype == "enum"
+            #todo: maybe a better way to check for valid number?
             val = fp_upd.enum_values.order(id: :asc)[Integer(params[:content]) - 1].enumvalid
             upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val})
-          rescue Exception
-            pre_msg = "Invalid selection. "
-          end
-        end #? todo: cater for date
+          end #? todo: cater for date
+        end
+        upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
+      rescue Exception
+        pre_msg = "Invalid input. "
       end
-      upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
     else
       return true
     end
