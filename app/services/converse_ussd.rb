@@ -19,6 +19,7 @@ class ConverseUssd
       to_addr: from_addr,
       to_addr_type: "ussd",
       transport_type: "ussd"}
+    pre_msg = ""
 
 
     #if new session, reset all formproperties
@@ -59,9 +60,13 @@ class ConverseUssd
         if fp_upd.formproptype == "string" or fp_upd.formproptype == "long"
           upd_f = FormProperty.where(id: fp_upd.id).update_all({value: params[:content]})
         elsif fp_upd.formproptype == "enum"
-          #todo: check for valid number
-          val = fp_upd.enum_values.order(id: :asc)[Integer(params[:content]) - 1].enumvalid
-          upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val})
+          #todo: maybe a better way to check for valid number?
+          begin
+            val = fp_upd.enum_values.order(id: :asc)[Integer(params[:content]) - 1].enumvalid
+            upd_f = FormProperty.where(id: fp_upd.id).update_all({value: val})
+          rescue Exception
+            pre_msg = "Invalid selection. "
+          end
         end #? todo: cater for date
       end
       upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
@@ -91,7 +96,7 @@ class ConverseUssd
           content = content + i.to_s + ": " + enum_val.name + "\n"
         end
         
-        callparams[:content] = content
+        callparams[:content] = pre_msg + content
         
       else #formproptype = string or long or date...
         if formprop.writeable?

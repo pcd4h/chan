@@ -47,6 +47,13 @@ gem 'byebug', group: [:development, :test]
 
 gem 'bootstrap-sass'
 
+group :development, :test do
+  gem 'rspec-rails', '~> 3.0.0'
+  gem 'factory_girl_rails'
+  gem 'capybara'
+  gem 'database_cleaner'
+end
+
 # gems required by Heroku
 gem 'pg', group: :production
 gem 'rails_12factor', group: :production
