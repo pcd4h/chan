@@ -68,7 +68,7 @@ class ConverseUssd
         end
         upd_f = FormProperty.where(id: fp_upd.id).update_all({processed: true})
       rescue Exception
-        pre_msg = "Invalid input. "
+        pre_msg = "Invalid input!\n "
       end
     else
       return true

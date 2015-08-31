@@ -10,18 +10,19 @@ module Api
 
     def create
       vmsg_params = v_message_params
-      vmsg_params[:direction] = "in"
 
-#      if vmsg_params[:content].nil?
-#        vmsg_params[:content] = ""
-#      end
+      if vmsg_params[:direction].nil?
+        vmsg_params[:direction] = "fromVum"
+      end
 
       @v_message = VMessage.create(vmsg_params)
       
       if vmsg_params[:transport_type] == "ussd"
         ConverseUssd.build.call(vmsg_params)
-      elsif vmsg_params[:transport_type] == "sms"
+      elsif vmsg_params[:transport_type] == "sms" && vmsg_params[:direction] == "fromVum"
         ReceiveSms.build.call(vmsg_params)
+      elsif vmsg_params[:transport_type] == "sms" && vmsg_params[:direction] == "fromAct"
+        SendSms.build.call({msisdn: vmsg_params[:to_addr], content: vmsg_params[:content]})
       end
 
       respond_with @v_message

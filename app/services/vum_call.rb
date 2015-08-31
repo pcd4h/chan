@@ -38,7 +38,7 @@ class VumCall
                              to_addr: @to_addr,
                              to_addr_type: @to_addr_type,
                              transport_type: @transport_type,
-                             direction: "out")
+                             direction: "toVum")
     
     return vmsg.id
   end

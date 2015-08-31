@@ -10,8 +10,10 @@ module Api
 
     def create
       @task = Task.create(task_params)
+      sms_content = task_params[:description].to_s + " - Please dial " + VUM_USSD_CHANNEL
+      sms_params = {content: sms_content, msisdn: task_params[:assignee]}
 
-      SendSms.build.call(task_params)
+      SendSms.build.call(sms_params)
       
       respond_with @task
     end
